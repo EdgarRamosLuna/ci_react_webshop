@@ -39,7 +39,7 @@ const Home = (props) => {
                             </p>
                         </div>
                         <div className="price">
-                            {data.precio}
+                            ${data.precio}
                         </div>
                     
                     </Link>
