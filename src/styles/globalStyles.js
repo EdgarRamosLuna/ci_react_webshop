@@ -9,9 +9,7 @@ const GlobalStyle = createGlobalStyle`
     overflow-y: ${props => props.isModal ? "hidden":""};
     
   }
-  ::-webkit-scrollbar-thumb{
-    border-radius:10px;
-  }
+  
   @font-face {
             font-family: 'AB';
             src:url('assets/fonts/Asap-Bold.otf');
