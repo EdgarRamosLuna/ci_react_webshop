@@ -704,6 +704,10 @@ export const Sticky = styled.div`
             color: #fff;
         }
     }
+    .logo {
+        background: #fff;
+        border-radius: 100%;
+    }
     .logo img {
         width: 50%;
         //filter:inverse(100);
