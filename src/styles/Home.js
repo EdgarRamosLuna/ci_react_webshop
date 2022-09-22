@@ -58,6 +58,12 @@ export const Products = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 0 35px;
+    }
+    .name p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .img{
         background: url(${props => props.bg ? `https://oasistienda.com/uploads/multimedia/${props.bg}`:""}) ;

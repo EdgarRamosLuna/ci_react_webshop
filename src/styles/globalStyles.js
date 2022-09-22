@@ -7,6 +7,10 @@ const GlobalStyle = createGlobalStyle`
     background: teal;
     font-family: Open-Sans, Helvetica, Sans-Serif;*/
     overflow-y: ${props => props.isModal ? "hidden":""};
+    
+  }
+  ::-webkit-scrollbar-thumb{
+    border-radius:10px;
   }
   @font-face {
             font-family: 'AB';
