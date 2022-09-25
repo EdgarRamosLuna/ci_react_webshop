@@ -12,15 +12,19 @@ const Header = (props) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showUserPanel, setShowUserPanel] = useState(false);
   const hideModalCat = () =>{
-        setShowLogin(false);
+    setShowLogin(false);
   }
   const hideModalUser = () =>{
-        setShowUserPanel(false);
+    setShowUserPanel(false);
   }
+  let dataCart = localStorage.getItem('cant');
+  dataCart = JSON.parse(dataCart);
   const {cantItems} = props;
+  const [cIt, setCIt] = useState(0)
   const [tokn, setTokn] = useState();
   let tokenString = localStorage.getItem('_');
   useEffect(() => {
+    
     if(tokenString){
         tokenString = JSON.parse(tokenString);
         tokenString = parseInt(tokenString);
@@ -36,6 +40,19 @@ const Header = (props) => {
             console.log(err);
         });
   }, [])
+  useEffect(() => {
+    if (cantItems) {
+      setCIt(cantItems);
+    }else{
+
+      setCIt(dataCart);
+    }
+  
+    return () => {
+      
+    }
+  }, [cantItems]);
+  
   const getToken = (data) => {
   
    // setTokn2("hey")
@@ -53,8 +70,6 @@ const Header = (props) => {
     
   }
   const token = getToken();
-  let dataCart = localStorage.getItem('cant');
-  dataCart = JSON.parse(dataCart);
 
 
   const [cont, setCont] = useState(0);
@@ -136,7 +151,7 @@ const Header = (props) => {
             </div>
 		    <div className="carrito-header">
                 <CarritoItems >
-				    <div className="carrito-header-btnCart"><span><a href="https://oasistienda.com/tienda/carrito/pagarSC/"><img src="https://oasistienda.com/tienda/img/carrito.png" alt="" /> <div className="cantNumber"><CartItems dataItems={cantItems}/></div></a></span></div>
+				    <div className="carrito-header-btnCart"><span><a href="https://oasistienda.com/tienda/carrito/pagarSC/"><img src="https://oasistienda.com/tienda/img/carrito.png" alt="" /> <div className="cantNumber"><CartItems dataItems={cIt}/></div></a></span></div>
                 
                 </CarritoItems>
                                 

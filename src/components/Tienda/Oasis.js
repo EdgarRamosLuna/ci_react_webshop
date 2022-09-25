@@ -27,7 +27,7 @@ const Oasis = () => {
         axios.get('https://oasistienda.com/home/indexReact').then(res =>{
        console.log(res.data);
         if (res.data) {
-          //setLoading(false);
+          setLoading(false);
         }
         setDataTienda(res.data.datos2);
         setDataTienda2(res.data.datos3);
@@ -39,10 +39,7 @@ const Oasis = () => {
         }).catch(err =>{
             console.log(err);
         });
-        setTimeout(() => {
-          
-          setLoading(false);
-        }, 1000);
+     
   }, [])
   
   const [dataCant, setDataCant] = useState([]);
@@ -73,7 +70,7 @@ const Oasis = () => {
   return (
     <HomeS>
         
-        {loading && <LoadingS><img src='assets/img/loading.svg' /></LoadingS>}
+        {loading && <LoadingS><img src='assets/img/loading3.svg' /></LoadingS>}
         
         <Header cantItems={cartItem}/>
         

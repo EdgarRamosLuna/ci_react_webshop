@@ -131,7 +131,7 @@ export const LoginT = styled.div`
     width: 100%;
     height: 100%;
     position: fixed;
-    z-index: 9;
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -163,18 +163,26 @@ export const LoginT = styled.div`
         width: 100%;
         float: left;
         height: 653px;
-        background-image: -moz-linear-gradient( 90deg, rgb(233,136,22) 0%, rgb(255,242,0) 100%);
-        background-image: -webkit-linear-gradient( 90deg, rgb(233,136,22) 0%, rgb(255,242,0) 100%);
-        background-image: -ms-linear-gradient( 90deg, rgb(233,136,22) 0%, rgb(255,242,0) 100%);
+        background-image: -moz-linear-gradient( 90deg,#fbd442 0%,rgb(233 136 22) 30%);
+        background-image: -webkit-linear-gradient( 90deg,#fbd442 0%,rgb(233 136 22) 30%);
+        background-image: -ms-linear-gradient( 90deg,#fbd442 0%,rgb(233 136 22) 30%);
         display: flex;
         justify-content: center;
         align-items: center;
+        
     }
     .cont-login3-body {
         width: 70%;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
+        .cont-login1-form-top-txt{
+            color: #fff;
+
+        }
+        label{
+            color: #fff;
+        }
     }
     .cont-login1-form-top{
         color: #000;
@@ -324,7 +332,13 @@ export const LoginT = styled.div`
                 }
             }
     }
-    
+    i.fa-solid.fa-circle-xmark {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 1.3em;
+        cursor: pointer;
+    }
     
 `;
 export const RetirarCont = styled.div`
@@ -931,5 +945,6 @@ export const LoadingS = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
+    z-index:9999;
+    transition: all 1s;
 `;

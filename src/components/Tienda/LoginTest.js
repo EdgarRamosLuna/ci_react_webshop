@@ -49,6 +49,7 @@ const handleModalContainerClick = (e) => e.stopPropagation();
         <div className="modal-login" >
             <div className="div-cont-login">
                 <div className="div-cont-login-body">
+                    <i class="fa-solid fa-circle-xmark" onClick={hideModal}></i>
                     <div className="cont-login3" onClick={handleModalContainerClick}>
                         <div className="cont-login3-body">
                             <div className="cont-login1-form-top">
