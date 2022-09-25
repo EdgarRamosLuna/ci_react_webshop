@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import GlobalStyle from './styles/globalStyles';
+import { TaskContextProvider } from './context/TaskContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-      <GlobalStyle />
-      <App />
-    
-  </BrowserRouter>
+  <TaskContextProvider>
+      <BrowserRouter>
+        <GlobalStyle />
+        <App />
+      </BrowserRouter>
+  </TaskContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

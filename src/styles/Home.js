@@ -117,11 +117,13 @@ export const Products = styled.div`
             border:1px solid inherit ;
             cursor: pointer;
             transition:all 0.3s;
+            border-radius: 25px;
             &:hover{
                 transition:all 0.3s;
                 background: #fff;
                 color: #ff9831;
                 border:1px solid #ff9831 ;
+                border-radius: 5px;
             }
         }
     }
@@ -940,6 +942,18 @@ export const LoadingS = styled.div`
     width: 100%;
     height: 100%;
     position: fixed;
+    z-index: 9;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index:9999;
+    transition: all 1s;
+`;
+export const LoadingSmall = styled.div`
+    width: 100%;
+    height: 50vh;
+    position: relative;
     z-index: 9;
     background: #fff;
     display: flex;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import axios from 'axios'
 
@@ -7,24 +7,17 @@ import { HomeS, LoadingS, Products } from '../../styles/Home';
 import Home from './Data/Home';
 import Banner1 from './Data/Banner1';
 import Contact from './Contact';
+import { ShopContext } from '../../context/TaskContext';
 const Oasis = () => {
   const [dataTienda, setDataTienda] = useState([]);
   const [dataTienda2, setDataTienda2] = useState([]);
   const [dataTienda3, setDataTienda3] = useState([]);
   const [dataTienda4, setDataTienda4] = useState([]);
   const [dataTienda5, setDataTienda5] = useState([]);
-  let dataCart = localStorage.getItem('cant');
-  dataCart = JSON.parse(dataCart);
-  dataCart = parseInt(dataCart);
  
-  if(isNaN(dataCart)){
-    dataCart = 0;
-    
-  }
-  const [cartItem, setCartItem] = useState(dataCart);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-        axios.get('https://oasistienda.com/home/indexReact').then(res =>{
+       axios.get('https://oasistienda.com/home/indexReact').then(res =>{
        console.log(res.data);
         if (res.data) {
           setLoading(false);
@@ -43,36 +36,16 @@ const Oasis = () => {
   }, [])
   
   const [dataCant, setDataCant] = useState([]);
-  const addCartItem = (data) =>{
-    //console.log(data + 1);
-    
-    setCartItem(prev => prev + 1);
-    
-    // updateSesionData();
-    
-  }
-  useEffect(() => {
-    updateCart();
   
-    return () => {
-      
-    }
-  }, [cartItem])
-  
-  const updateCart = () => {
-    
-    localStorage.setItem('cant', JSON.stringify(cartItem));
-  }
 
   
+  const {addCartItem, cartItem} = useContext(ShopContext);
 
   //console.log(cartItem);
   return (
     <HomeS>
-        
         {loading && <LoadingS><img src='assets/img/loading3.svg' /></LoadingS>}
-        
-        <Header cantItems={cartItem}/>
+        <Header/>
         
         <Banner1 img={`https://oasistienda.com/uploads/banners/banner/${dataTienda4}`}  pos="absolute" mb={552.422}  />
         <Home dataTienda = {dataTienda}  addItem={addCartItem}/>

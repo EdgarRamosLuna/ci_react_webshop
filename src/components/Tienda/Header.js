@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { ShopContext } from '../../context/TaskContext';
 import GlobalStyle from '../../styles/globalStyles';
 
 import { CarritoItems, HeaderS, SpacerS, Sticky } from '../../styles/Home'
@@ -9,21 +10,19 @@ import LoginTest from './LoginTest';
 import UserPanel from './UserPanel';
 
 const Header = (props) => {
-  const [showLogin, setShowLogin] = useState(false);
+  
   const [showUserPanel, setShowUserPanel] = useState(false);
+  const {addCartItem, cartItem, tokn, setShowLogin, showLogin, getToken} = useContext(ShopContext);
   const hideModalCat = () =>{
     setShowLogin(false);
   }
-  const hideModalUser = () =>{
+  const hideModalUser = () =>{  
     setShowUserPanel(false);
   }
-  let dataCart = localStorage.getItem('cant');
-  dataCart = JSON.parse(dataCart);
-  const {cantItems} = props;
+
   const [cIt, setCIt] = useState(0)
-  const [tokn, setTokn] = useState();
-  let tokenString = localStorage.getItem('_');
-  useEffect(() => {
+  
+  /*useEffect(() => {
     
     if(tokenString){
         tokenString = JSON.parse(tokenString);
@@ -39,37 +38,10 @@ const Header = (props) => {
         }).catch(err =>{
             console.log(err);
         });
-  }, [])
-  useEffect(() => {
-    if (cantItems) {
-      setCIt(cantItems);
-    }else{
-
-      setCIt(dataCart);
-    }
+  }, [])*/
   
-    return () => {
-      
-    }
-  }, [cantItems]);
   
-  const getToken = (data) => {
   
-   // setTokn2("hey")
-   if(data){
-    getDa(data);
-   }
-    
-  }
-  const getDa =  (datas) =>{
-   // console.log(datas);
-   if(datas){
-    setTokn(datas);
-    setShowLogin(false);
-   }
-    
-  }
-  const token = getToken();
 
 
   const [cont, setCont] = useState(0);
@@ -115,7 +87,7 @@ const Header = (props) => {
     return(
         <Sticky>
             <ul>
-			        <li><Link to="/" className="logo"> <img src="assets/img/logo.png" alt="" /></Link></li>
+			        <li><Link to="/" className="logo"> <img src="/assets/img/logo.png" alt="" /></Link></li>
 			        <div className="menuItems">
                 <li><a href="#rebajas" className="rebajas">REBAJAS</a></li>
                 <li><a href="https://oasistienda.com/#lo_nuevo">Categorías</a></li>
@@ -151,7 +123,7 @@ const Header = (props) => {
             </div>
 		    <div className="carrito-header">
                 <CarritoItems >
-				    <div className="carrito-header-btnCart"><span><a href="https://oasistienda.com/tienda/carrito/pagarSC/"><img src="https://oasistienda.com/tienda/img/carrito.png" alt="" /> <div className="cantNumber"><CartItems dataItems={cIt}/></div></a></span></div>
+				    <div className="carrito-header-btnCart"><span><a href="https://oasistienda.com/tienda/carrito/pagarSC/"><img src="https://oasistienda.com/tienda/img/carrito.png" alt="" /> <div className="cantNumber"><CartItems dataItems={cartItem}/></div></a></span></div>
                 
                 </CarritoItems>
                                 
