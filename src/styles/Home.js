@@ -6,7 +6,29 @@ export const HomeS = styled.div`
   display: flex;
   flex-wrap: wrap;
   background:#fff;
-  
+  .sugg {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        position: relative;
+    }
+    .sugTitle {
+        width: 35%;
+        display: flex;
+        z-index: 10;
+        background: #f19733;
+        color: #fff;
+        box-sizing: border-box;
+        padding: 15px 2%;
+        align-self: start;
+        margin: 15px 0;
+        font-size: 2em;
+        p{
+            margin: 0%;
+            padding: 0;
+        }
+    }
     i{
         font-family: "Font Awesome 6 Free" !important;
     }
@@ -20,6 +42,8 @@ export const HomeS = styled.div`
         flex-wrap: wrap;
         max-width: 1600px;
         margin: 0 auto;
+        position: relative;
+        z-index: 100;
         a{
             width:100% ;
             height:100%;
@@ -39,6 +63,8 @@ export const Products = styled.div`
     align-items: center;
     margin: 10px 1.5%;
     cursor: pointer;
+    position: relative;
+    
     &:hover{
         transition: box-shadow .2s ease-in-out,-webkit-box-shadow .2s ease-in-out;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,.1);
@@ -370,6 +396,7 @@ export const HeaderS = styled.div`
         display: flex;
         justify-content: end;
         top:0;
+        z-index: 999;
     }
     
     .carrito-header {
@@ -382,6 +409,7 @@ export const HeaderS = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0 10px;
         .carrito-header-btnCart img {
             filter: brightness(0) invert();
         }
@@ -664,11 +692,21 @@ export const CarritoItems = styled.div`
         align-items: center;
         display: flex;
     }
+    .cantNumber {
+    position: absolute;
+    top: -10px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    left: -3px;
+}
 `;
 export const Sticky = styled.div`
     display: flex;
     margin-right:auto ;
     width: 70%;
+    padding: 0 20px;
+    box-sizing: border-box;
     a{
         text-decoration: none;
         color: #fff;
@@ -699,6 +737,7 @@ export const Sticky = styled.div`
         display: flex;
         justify-content: start;
         align-items: center;
+        white-space: nowrap;
         li a{
             font-size:1em ;
             color: #fff;
@@ -717,4 +756,55 @@ export const Sticky = styled.div`
 export const SpacerS = styled.div`
     width: 70%;
     height: 100%;
+`;
+export const Banner = styled.div`
+    min-width: 100%;
+    max-width: 1920px;
+    display: flex;
+    position: relative;
+    margin-bottom: ${props => props.mb ? `38%`:"0"};
+    .container {
+        width: 100%;
+        background-image: url(${props => props.img});
+        background-position: top;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        min-height: ${props => props.pos == "absolute" ? "720px":"720px" };
+        position: ${props => props.pos};
+    }
+
+`;
+export const ProductsTienda = styled.div`
+
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1600px;
+        margin: 0 auto;
+        background-color: ${props => props.bgColor ? props.bgColor:""};
+        padding: ${props => props.bgColor ? "5%":"5%;"};
+        padding-bottom: ${props => props.pb ? "50px;":""};
+        border-bottom: ${props => props.pb ? "":"30px solid #e6ae81"};
+        &:after{
+            content:"";
+            //display:${props => props.pb ? "flex":""}; 
+        }
+
+`;
+export const Recomendado = styled.div`
+    position: absolute;
+    background: #ff9831;
+    float: left;
+    box-sizing: border-box;
+    padding: 3%;
+    text-align: center;
+    font-size: 1.3em;
+    color: #fff;
+    top: 10%;
+    left: 0;
+    max-width: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
 `;

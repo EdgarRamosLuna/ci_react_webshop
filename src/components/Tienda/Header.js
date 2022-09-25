@@ -4,6 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 import GlobalStyle from '../../styles/globalStyles';
 
 import { CarritoItems, HeaderS, SpacerS, Sticky } from '../../styles/Home'
+import CartItems from './Data/CartItems';
 import LoginTest from './LoginTest';
 import UserPanel from './UserPanel';
 
@@ -99,8 +100,8 @@ const Header = (props) => {
     return(
         <Sticky>
             <ul>
-			  <li><Link to="/" className="logo"> <img src="https://oasistienda.com/tienda/img/logo.png" alt="" /></Link></li>
-			  <div className="menuItems">
+			        <li><Link to="/" className="logo"> <img src="assets/img/logo.png" alt="" /></Link></li>
+			        <div className="menuItems">
                 <li><a href="#rebajas" className="rebajas">REBAJAS</a></li>
                 <li><a href="https://oasistienda.com/#lo_nuevo">Categorías</a></li>
                 <li><a href="https://oasistienda.com/#lo_nuevo">Lo Nuevo</a></li>
@@ -108,7 +109,7 @@ const Header = (props) => {
                 <li><a href="https://oasistienda.com/#recomendado">Recomendado</a></li>
                 <li><a href="https://oasistienda.com/#contacto">Contacto</a></li>
               </div>
-			</ul>
+			      </ul>
         </Sticky>
     )
   }
@@ -135,7 +136,8 @@ const Header = (props) => {
             </div>
 		    <div className="carrito-header">
                 <CarritoItems >
-				    <div className="carrito-header-btnCart"><span><a href="https://oasistienda.com/tienda/carrito/pagarSC/"><img src="https://oasistienda.com/tienda/img/carrito.png" alt="" /> <div className="cantNumber">{dataCart}</div></a></span></div>
+				    <div className="carrito-header-btnCart"><span><a href="https://oasistienda.com/tienda/carrito/pagarSC/"><img src="https://oasistienda.com/tienda/img/carrito.png" alt="" /> <div className="cantNumber"><CartItems dataItems={cantItems}/></div></a></span></div>
+                
                 </CarritoItems>
                                 
             </div>

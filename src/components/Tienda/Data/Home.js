@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
-import { Products } from '../../../styles/Home';
+import { Products, ProductsTienda, Recomendado } from '../../../styles/Home';
 
 const Home = (props) => {
-  const {dataTienda, addItem} = props;
+  const {dataTienda, addItem, bg, rec, pb} = props;
   const [cant, setCant] = useState(0);
   let dataCart = localStorage.getItem('cant');
   dataCart = JSON.parse(dataCart);
@@ -22,11 +22,12 @@ const Home = (props) => {
     //localStorage.setItem('cant', JSON.stringify(cartItem));
   }
   return (
-    <div className="productosTienda">
+    <ProductsTienda bgColor={bg} pb={pb}>
         {
             //dataTienda
             dataTienda.map(data =>
-                <Products key={data.id} bg={data.file_name}>
+                <Products key={data.id} bg={data.file_name} >
+                    {rec ? <Recomendado>Recomendado</Recomendado>:""}
                     <div className="container">
                     <Link to={`/productos/ver/${data.id}`}>
                     
@@ -51,7 +52,7 @@ const Home = (props) => {
                 </Products>
             )
         }
-    </div>
+    </ProductsTienda>
   )
 }
 
