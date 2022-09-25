@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
 import Header from './Header';
-import { HomeS, Products } from '../../styles/Home';
+import { HomeS, LoadingS, Products } from '../../styles/Home';
 import Home from './Data/Home';
 import Banner1 from './Data/Banner1';
+import Contact from './Contact';
 const Oasis = () => {
   const [dataTienda, setDataTienda] = useState([]);
   const [dataTienda2, setDataTienda2] = useState([]);
@@ -21,9 +22,13 @@ const Oasis = () => {
     
   }
   const [cartItem, setCartItem] = useState(dataCart);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
         axios.get('https://oasistienda.com/home/indexReact').then(res =>{
        console.log(res.data);
+        if (res.data) {
+          setLoading(false);
+        }
         setDataTienda(res.data.datos2);
         setDataTienda2(res.data.datos3);
         setDataTienda3(res.data.datos6);
@@ -64,7 +69,11 @@ const Oasis = () => {
   //console.log(cartItem);
   return (
     <HomeS>
+        
+        {loading && <LoadingS><img src='assets/img/loading.svg' /></LoadingS>}
+        
         <Header cantItems={cartItem}/>
+        
         <Banner1 img={`https://oasistienda.com/uploads/banners/banner/${dataTienda4}`}  pos="absolute" mb={552.422}  />
         <Home dataTienda = {dataTienda}  addItem={addCartItem}/>
         <Banner1 img={`https://oasistienda.com/uploads/banners/banner2/${dataTienda5}`} pos="absolute" mb={552.422}  />
@@ -76,9 +85,8 @@ const Oasis = () => {
           </div>
           <Home dataTienda = {dataTienda2}  addItem={addCartItem} pb={true}/>
         </div>
-
         <Home dataTienda = {dataTienda3}  addItem={addCartItem} bg={"#ebebeb"} rec={true}/>
-        
+        <Contact />
         
 
     </HomeS>

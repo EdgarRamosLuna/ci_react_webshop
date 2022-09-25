@@ -24,6 +24,10 @@ export const HomeS = styled.div`
         align-self: start;
         margin: 15px 0;
         font-size: 2em;
+        clip-path: polygon(0 0, 75% 0%, 87% 50%, 75% 100%, 0 100%, 0% 50%);
+
+
+
         p{
             margin: 0%;
             padding: 0;
@@ -397,6 +401,7 @@ export const HeaderS = styled.div`
         justify-content: end;
         top:0;
         z-index: 999;
+        
     }
     
     .carrito-header {
@@ -512,6 +517,7 @@ export const HeaderS = styled.div`
     }
     .sticky {
         position: fixed;
+        box-shadow: 0 8px 16px 0 rgb(0 0 0 / 10%);
     }
     .sticky2 {
         margin-top:60px;
@@ -782,9 +788,10 @@ export const ProductsTienda = styled.div`
         max-width: 1600px;
         margin: 0 auto;
         background-color: ${props => props.bgColor ? props.bgColor:""};
-        padding: ${props => props.bgColor ? "5%":"5%;"};
-        padding-bottom: ${props => props.pb ? "50px;":""};
-        border-bottom: ${props => props.pb ? "":"30px solid #e6ae81"};
+        padding: ${props => props.bgColor ? "5%":"5%"};
+        padding-bottom: ${props => props.pb ? "50px":""};
+        border-bottom: ${props => props.pb ? "":"10px solid #fbd442"};
+        box-sizing: border-box;
         &:after{
             content:"";
             //display:${props => props.pb ? "flex":""}; 
@@ -805,6 +812,124 @@ export const Recomendado = styled.div`
     max-width: 200px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 75% 0%, 87% 50%, 75% 100%, 0 100%, 0% 50%);
+`;
+export const ContactS = styled.div`
+    color: #fff;
+    width: 100%;
+    display: flex;
+    background: #f19733;
+    .contacto-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-left: 5%;
+}
+.contacto-header {
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+}
+.contacto-body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    min-height: 600px;
+}
+.contacto-body-form {
+    width: 45%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    
+    justify-content: center;
+    box-sizing: border-box;
+    margin-right: 5%;
+}
+.contacto-img {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5%;
+    
+    img {
+        width: 100%;
+    }
+}
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    margin:10px 0;
+    button {
+        width: 20%;
+        height: 59px;
+        background: transparent;
+        color: #fff;
+        border: 1px solid #fff;
+        transition: all 0.3s;
+    }
+    input {
+        width: 100%;
+        height: 50px;
+        box-sizing: border-box;
+        background: transparent;
+        color: #fff;
+        border: none;
+        border-bottom: 1px solid #fff;
+        padding-left: 10px;
+        padding-right: 10px;
+    outline: none;
+    
+    &::placeholder{
+        color: #fff;
+        opacity: 1;
+    }
+}
+textarea {
+    width: 100%;
+    resize: none;
+    background: transparent;
+    color: #fff;
+    border: none;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-attachment: local;
+    background-image: linear-gradient(to right, transparent 10px, transparent 10px), linear-gradient(to left, transparent 10px, transparent 10px), repeating-linear-gradient(transparent , transparent 30px, #fff 30px, #fff 31px, white 31px);
+    line-height: 31px;
+    height: 200px;
+    outline: none;
+    scrollbar-color: #fff #fff;
+    &::placeholder{
+        color: #fff;
+        opacity: 1;
+    }
+}
+
+}
+.contacto-header-title {
+    width: 100%;
+    display: flex;
+    p {
+    font-size: 4em;
+    color: #fff;
+}   
+}
+`;
+export const LoadingS = styled.div`
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 `;
