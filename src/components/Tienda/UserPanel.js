@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { ShopContext } from '../../context/TaskContext';
 import { LoginT, RetirarCont } from '../../styles/Home';
 
 
 const UserPanel = (props) => {
   const {userId, closeModal} = props;
+  const {setTokn, tokn} = useContext(ShopContext);
   const [dataCuenta, setDataCuenta] = useState([]);
   const [showR, setShowR] = useState(false);
   const hideModal = ()=>{
@@ -23,6 +26,12 @@ const UserPanel = (props) => {
     
   }, [])
   const handleModalContainerClick = (e) => e.stopPropagation();
+  const LogOut = () => {
+	localStorage.removeItem('_');
+	setTokn(0);
+	console.log('Log Out');
+	hideModal();
+  }
   return (
     <LoginT onClick={hideModal}>
         <RetirarCont>
@@ -30,7 +39,7 @@ const UserPanel = (props) => {
 				<div className="cont-login1-form">
 					<div className="cont-login1-form-top">
 						<div className="cont-login1-form-top-txt1"><a href="#" className="cambiarP">Cambiar contraseña</a></div>
-						<div className="cont-login1-form-top-txt2"><a href="https://oasistienda.com/tienda/login/salir/">Cerrar Sesión</a></div>
+						<div className="cont-login1-form-top-txt2"><a href="#" onClick={(e) => LogOut()}>Cerrar Sesión</a></div>
 					</div>
 					<div className="cont-login1-form-top-cambiarP" >
 						<div className="cont-login1-form-top-input">

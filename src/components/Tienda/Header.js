@@ -5,6 +5,7 @@ import { ShopContext } from '../../context/TaskContext';
 import GlobalStyle from '../../styles/globalStyles';
 
 import { CarritoItems, HeaderS, SpacerS, Sticky } from '../../styles/Home'
+import Notify from '../helpers/Notify';
 import CartItems from './Data/CartItems';
 import LoginTest from './LoginTest';
 import UserPanel from './UserPanel';
@@ -12,7 +13,7 @@ import UserPanel from './UserPanel';
 const Header = (props) => {
   
   const [showUserPanel, setShowUserPanel] = useState(false);
-  const {addCartItem, cartItem, tokn, setShowLogin, showLogin, getToken} = useContext(ShopContext);
+  const {addCartItem, cartItemN, tokn, setShowLogin, showLogin, getToken, showAlertStock, setShowAlertStock} = useContext(ShopContext);
   const hideModalCat = () =>{
     setShowLogin(false);
   }
@@ -100,12 +101,21 @@ const Header = (props) => {
         </Sticky>
     )
   }
+  const [showAlert, setShowAlert] = useState(false);
+  const isUser = () =>{
+    setShowAlert(true);
+    setTimeout(() => {
+          setShowAlert(false);
+    }, 3000);
+  }
   return (
     <HeaderS>
    
         {showLogin ? <LoginTest closeModal={hideModalCat} tkn={getToken}/>:""}
         {showUserPanel ? <UserPanel userId={tokn} closeModal={hideModalUser} />:""}
         {showUserPanel ? <GlobalStyle isModal={true} />:""}
+        {showAlert && <Notify>Inicia sesion para poder completar tu compra!</Notify>}
+        
         <div className="header-amarillo" id="navbar">
             {moreThan ? <MenuStick />:<SpacerS></SpacerS>}
             <div className="buscar-header">
@@ -123,7 +133,7 @@ const Header = (props) => {
             </div>
 		    <div className="carrito-header">
                 <CarritoItems >
-				    <div className="carrito-header-btnCart"><span><a href="https://oasistienda.com/tienda/carrito/pagarSC/"><img src="https://oasistienda.com/tienda/img/carrito.png" alt="" /> <div className="cantNumber"><CartItems dataItems={cartItem}/></div></a></span></div>
+				    <div className="carrito-header-btnCart"><span>{tokn > 0 ? <a href="/cart"><img src="https://oasistienda.com/tienda/img/carrito.png" alt="" /> <div className="cantNumber"><CartItems dataItems={cartItemN}/></div></a> : <div onClick={isUser}><img src="https://oasistienda.com/tienda/img/carrito.png" alt="" /> <div className="cantNumber"><CartItems dataItems={cartItemN}/></div></div>}</span></div>
                 
                 </CarritoItems>
                                 

@@ -36,9 +36,6 @@ const Oasis = () => {
   }, [])
   
   const [dataCant, setDataCant] = useState([]);
-  
-
-  
   const {addCartItem, cartItem} = useContext(ShopContext);
 
   //console.log(cartItem);
@@ -46,9 +43,8 @@ const Oasis = () => {
     <HomeS>
         {loading && <LoadingS><img src='assets/img/loading3.svg' /></LoadingS>}
         <Header/>
-        
         <Banner1 img={`https://oasistienda.com/uploads/banners/banner/${dataTienda4}`}  pos="absolute" mb={552.422}  />
-        <Home dataTienda = {dataTienda}  addItem={addCartItem}/>
+        <Home dataTienda = {dataTienda}  />
         <Banner1 img={`https://oasistienda.com/uploads/banners/banner2/${dataTienda5}`} pos="absolute" mb={552.422}  />
         <div className='sugg'>
           <div className='sugTitle'>
@@ -56,9 +52,9 @@ const Oasis = () => {
               Algo de esto te gustará
               </p>
           </div>
-          <Home dataTienda = {dataTienda2}  addItem={addCartItem} pb={true}/>
+          <Home dataTienda = {dataTienda2}  pb={true}/>
         </div>
-        <Home dataTienda = {dataTienda3}  addItem={addCartItem} bg={"#ebebeb"} rec={true}/>
+        <Home dataTienda = {dataTienda3}  bg={"#ebebeb"} rec={true}/>
         <Contact />
         
 

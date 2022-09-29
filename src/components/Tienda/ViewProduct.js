@@ -7,26 +7,27 @@ import { LoadingS, LoadingSmall, ProductView, ProductViewImg } from '../../style
 
 const ViewProduct = (props) => {
   const {addCartItem, cartItem, loading, setLoading} = useContext(ShopContext);
-  const idCont = useParams();
-  console.log(idCont);
+  const idP = useParams();
+  console.log(idP);
   const [nombre, setNombre] = useState("");
   const [precio, setPrecio] = useState("");
   const [desc, setDesc] = useState("");
   const [imgs, setImgs] = useState([]);
   const [img, setImg] = useState([]);
+  const [idI, setIdI] = useState(0);
   const [cat, setCat] = useState("");
   const {dataTienda, addItem} = props;
   useEffect(() => {
     
     setLoading(true);
-    axios.get(`https://oasistienda.com/tienda/productos/verReact/${idCont.idpro}`).then(res =>{
+    axios.get(`https://oasistienda.com/tienda/productos/verReact/${idP.idpro}`).then(res =>{
         
         const imgsData = res.data.imgs;
         if(res.data){
           setTimeout(() => {
             
             setLoading(false);
-          }, 1000);
+          }, 500);
           
         }
         setNombre(res.data.datos[0].nombrePro);
@@ -68,7 +69,7 @@ const ViewProduct = (props) => {
       <div className="cont-producto">
         <div className="div-cont-producto-top">
             <div className="cont-producto-top-txt">
-                <span><a href="#">Categoría</a><i class="fa-solid fa-chevron-right"></i><a href="#">{cat} </a></span>
+                <span><a href="#">Categoría</a><i className="fa-solid fa-chevron-right"></i><a href="#">{cat} </a></span>
             </div>
         </div>
         <div className="div-cont-producto-body">
@@ -120,14 +121,14 @@ const ViewProduct = (props) => {
             </div>
           </div>
           <div className="producto-body-data-cant-btns">
-            <div className="producto-body-data-cant-btn prev"><i class="fa-solid fa-caret-left"></i></div>
+            <div className="producto-body-data-cant-btn prev"><i className="fa-solid fa-caret-left"></i></div>
             <div className="producto-body-data-cant-num"><input type="text" value="1" /></div>
-            <div className="producto-body-data-cant-btn next"><i class="fa-solid fa-caret-right"></i></div>
+            <div className="producto-body-data-cant-btn next"><i className="fa-solid fa-caret-right"></i></div>
           </div>
         </div>
         <div className="producto-body-data-btn">
           <div className="producto-body-data-btn-body">
-            <button className="btn-cart" data-id-producto="1" onClick={addCartItem}>Añadir al carrito</button>
+            <button className="btn-cart" data-id-producto="1" onClick={() => addCartItem(idP.idpro)}>Añadir al carrito</button>
           </div>
         </div>
         

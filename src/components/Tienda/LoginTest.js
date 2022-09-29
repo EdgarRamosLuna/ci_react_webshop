@@ -20,8 +20,9 @@ const LoginTest = (props) => {
         axios.post('https://oasistienda.com/tienda/login/checar_login2', JSON.stringify({'correo': correo, 'pass':pass}))
         .then(function (response) {
             console.log(response.data.mensaje);
-            const id = response.data.cliente_id;
+            const id = parseInt(response.data.cliente_id);
             let cart = response.data.session;
+            
             localStorage.setItem('_', JSON.stringify(id));
          //   sessionStorage.setItem('cart', JSON.stringify(cart));
             let tokenString = localStorage.getItem('_');

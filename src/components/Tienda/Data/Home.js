@@ -1,26 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import { Link } from 'react-router-dom';
+import { ShopContext } from '../../../context/TaskContext';
 import { Products, ProductsTienda, Recomendado } from '../../../styles/Home';
 
 const Home = (props) => {
-  const {dataTienda, addItem, bg, rec, pb} = props;
-  const [cant, setCant] = useState(0);
-  let dataCart = localStorage.getItem('cant');
-  dataCart = JSON.parse(dataCart);
-  dataCart = parseInt(dataCart);
- 
-  if(isNaN(dataCart)){
-    dataCart = 0;
-    
-  }
+  const {dataTienda, bg, rec, pb} = props;
+  const {addCartItem, cartItem, loading, setLoading} = useContext(ShopContext);
+  
   //console.log(dataCart);
-  const [cartItem, setCartItem] = useState(dataCart);
-  const addIt = () =>{
-    setCartItem(prev => prev + 1)
-    addItem(cartItem);
-    //localStorage.setItem('cant', JSON.stringify(cartItem));
-  }
+  
   return (
     <ProductsTienda bgColor={bg} pb={pb}>
         {
@@ -40,12 +29,17 @@ const Home = (props) => {
                             </p>
                         </div>
                         <div className="price">
-                            ${data.precio}
+                            <span className="symb"> 
+                                $
+                            </span>
+                            <span className="pric"> 
+                                {data.precio}
+                            </span>
                         </div>
                     
                     </Link>
                         <div className="btn-addCart">
-                            <button onClick={addIt}>Añadir al carrito</button>
+                            <button onClick={() => addCartItem(data.id, data.inventario)}>Añadir al carrito</button>
                         
                         </div>
                     </div>

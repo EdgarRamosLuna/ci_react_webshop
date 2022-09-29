@@ -206,10 +206,19 @@ export const LoginT = styled.div`
     .cont-login2-body-btn button {
         width: 257px;
         height: 69px;
-        border: 0;
         background: #fff;
         color: #ff9831;
         border-radius: 5px;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+            transition: all 0.3s;
+        }
     }
     /*Cuenta usuario*/
     .cont-login1 {
@@ -458,12 +467,21 @@ export const HeaderS = styled.div`
         min-width: 385.75px;
         width: 100%;
         padding: 10px;
-            padding-right: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-left: 10px;
-            border: 0;
-            outline: none;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+        border: 0;
+        outline: none;
+        background: #f19733;
+        color: #fff;
+        border: 1px solid #fff;
+        &::placeholder{
+            color: #fff;
+        }
+        @media (max-width:1000px) {
+            min-width: 185.75px;
+        }
     }
     .header-blanco {
         width: 100%;
@@ -494,6 +512,34 @@ export const HeaderS = styled.div`
         li {
             width: auto !important;
             margin: 0 5px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            transition: all 0.3s;
+            &:before{
+                    content: '';
+                    position: absolute;
+                    bottom: -6px;
+                    width: 0%;
+                    height: 3px;
+                    background: white;
+                    left: 0;
+                    display: flex;
+                    justify-content: center;
+                    margin: 0 10%;
+                    transition: all 0.3s;
+                }
+            &:hover {
+                transition: all 0.3s;
+                
+                &:before{
+                    content: '';
+                    position: absolute;
+                    
+                    width: 80%;
+                    transition: all 0.3s;
+                }
+            }
             a {
                 color: #000;
                 display: flex;
@@ -528,7 +574,7 @@ export const HeaderS = styled.div`
     }
     #buscarBtn {
         color: #ff9831;
-        margin: 0 25px;
+        margin: 0 10px;
         cursor: pointer;
     }
     .sticky {
@@ -688,6 +734,7 @@ export const CarritoItems = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
         &:before{
                 content: '${props => props.cant}';
                 position: absolute;
@@ -716,11 +763,19 @@ export const CarritoItems = styled.div`
     }
     .cantNumber {
     position: absolute;
-    top: -10px;
-    width: 100%;
     display: flex;
-    justify-content: end;
-    left: -3px;
+    justify-content: center;
+    background: #f19733;
+    right: -10px;
+    top: -5px;
+    border-radius: 100%;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 20px;
+    height: 20px;
+    font-size: 0.8em;
+    align-items: center;
 }
 `;
 export const Sticky = styled.div`
@@ -763,6 +818,10 @@ export const Sticky = styled.div`
         li a{
             font-size:1em ;
             color: #fff;
+            @media (max-width:1000px) {
+                font-size:0.6em ;
+                padding:14px 3px;
+            }
         }
     }
     .logo {
@@ -889,6 +948,11 @@ export const ContactS = styled.div`
         color: #fff;
         border: 1px solid #fff;
         transition: all 0.3s;
+        &:hover {
+            color: #f19733;
+            background: #fff;
+            transition: all 0.3s;
+        }
     }
     input {
         width: 100%;
@@ -962,3 +1026,337 @@ export const LoadingSmall = styled.div`
     z-index:9999;
     transition: all 1s;
 `;
+export const CartDat = styled.div`
+.cart-header {
+    width: 100%;
+    height: 60px;
+    background: #fbd23a;
+    color: #0000;
+}
+.cart-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.cart-logo {
+    width: 100%;
+    img {
+        max-width: 100px;
+    }
+}
+
+.cart-items-container {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 50px;
+}
+.cart-items {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+.cart-info {
+    width: 40%;
+}
+.cart-info-title {
+    width: 80%;
+    background: #3599ed;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+}
+.cart-info-content {
+    width: 80%;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+}
+.cart-info-data {
+    display: flex;
+    justify-content: start;
+    text-align: left;
+}
+.cart-info-data-item {
+    width: 80%;
+    margin: 15px auto;
+    display: flex;
+    flex-flow: column;
+    gap: 15px;
+}
+.cart-info-payment {
+    color: #3599ed;
+}
+.cart-item {
+    display: flex;
+    flex-direction: column;
+}
+.cart-item {
+        display: flex;
+        height: 300px;
+        overflow-y: auto;
+        margin-bottom: 25px;
+}
+.cart-logo {
+    width: 100%;
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    a{
+        color: #000;
+    }
+}
+.cart-title {
+    width: 80%;
+    background: #f08b3a;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: 1.5em;
+    display: flex;
+    box-sizing: border-box;
+    padding-left: 35px;
+}
+`;
+export const CartItem = styled.div`
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 10px 0;
+    gap: 10px;
+    .img{
+        background: url(${props => props.bg ? `https://oasistienda.com/uploads/multimedia/${props.bg}`:""}) ;
+        width: 100%;
+        height: 100px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: 100%;
+        width: 100px; 
+    }
+    .name {
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        font-size:0.8em;
+    }
+    
+    .cart-item-remove {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        button {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: none;
+            cursor: pointer;
+            position:relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:before{
+                content: '';
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("/assets/img/tacha.png");
+                background-position: center;
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+    .price {
+        display: flex;
+        flex-direction: column;
+        margin: 0 20px;
+        gap: 5px;
+        width: 100px;
+    }
+    .cant {
+        display: flex;
+        gap: 15px;
+        span {
+            margin: 0 15px;
+            text-align: center;
+            border: none;
+        }
+    }
+    .total {
+        width: 25%;
+        display: flex;
+        justify-content: end;
+    }
+    .add{
+        
+            width: 15px;
+            height: 15px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            position:relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:before{
+                content: '';
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("/assets/img/PALOMITA.png");
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+        }
+        
+    }
+    .remove{
+        
+        width: 15px;
+        height: 15px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        position:relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:before{
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("/assets/img/PALOMITA.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(180deg);
+    }
+    
+}
+`
+export const NotifyS = styled.div`
+    position: fixed;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 5px;
+    top: 15%;
+    background: #f03a3a;
+    z-index: 99999;
+    color: #fff;
+    box-sizing: border-box;
+    padding: 0 20px;
+    margin: 0 auto;
+    gap:10px;
+    i{
+        font-size:1.5em;
+    }
+`;
+export const CartFooter = styled.div`
+width: 100%;
+display: flex;
+hr{
+    width: 100%;
+}
+.footer-info {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    
+}
+.footer-cont{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.footer-data {
+    display: flex;
+    width: 20%;
+    flex-direction: column;
+    align-items: end;
+    gap: 8px;
+    hr{
+        background:transparent;
+        color:transparent;
+        border-color: transparent;
+    }
+    b {
+        display: flex;
+        gap:1px;
+    }
+}
+.footer-cont2 {
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+    margin-bottom: 10px;
+    width: 80%;
+}
+.cart-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-saldo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+}
+.footer-saldo-info {
+    display: flex;
+    gap: 5px;
+}
+h4 {
+    margin: 0;
+    padding: 0;
+}
+p {
+    margin: 0;
+}
+.footer-saldo-amount-pay {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 7px;
+}
+.amout-pay-i {
+    display: flex;
+    input {
+        max-width: 70px;
+    }
+}
+.footer-cont-info {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 8px;
+    background:url("/assets/img/OLAS.png");
+}
+`;
+
+export const CartBtn = styled.button`
+    width: 50%;
+    background: #4393ce;
+    color: #fff;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    text-transform: uppercase;
+ 
+`

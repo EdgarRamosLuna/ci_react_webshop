@@ -14,6 +14,7 @@ import LoginTest from './components/Tienda/LoginTest';
 import ViewProduct from './components/Tienda/ViewProduct';
 import Header from './components/Tienda/Header';
 import { LoadingS } from './styles/Home';
+import Cart from './components/Tienda/Cart';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -51,6 +52,9 @@ function App() {
             <Route path="/login" element={<LoginTest/>} />
             <Route exact path="productos/ver" element={<Header />}>
               <Route exact path=":idpro" element={<ViewProduct />} />
+            </Route>
+            <Route exact path="cart/" element={<Cart />}>
+             
             </Route>
       </Routes>
       

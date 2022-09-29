@@ -6,37 +6,122 @@ import {
     Route,
     Link,
     Routes
-  } from "react-router-dom";
+} from "react-router-dom";
 import { createContext } from "react";
 
 export const ShopContext = createContext();
 
 
 export const TaskContextProvider = (props) => {
-  const x = 20;
-  const d = 26;
-  let dataCart = localStorage.getItem('cant');
-  dataCart = JSON.parse(dataCart);
-  dataCart = parseInt(dataCart);
-  if(isNaN(dataCart)){
-    dataCart = 0;
+    let dataCart = localStorage.getItem('cant');
+    let dataCartI = localStorage.getItem('cart');
+    useEffect(() => {
+        
+        if(tokenString){
+            tokenString = JSON.parse(tokenString);
+            tokenString = parseInt(tokenString);
+            setTokn(tokenString);
+            setShowLogin(false);
+        }
+
+        if(dataCartI == ""){
+        
+            
+            localStorage.setItem('cart', JSON.stringify([]));
+            localStorage.setItem('cant', JSON.stringify(0));
+            dataCart = 0;
+        }
+        if(!Array.isArray(dataCartI)){
+        
+            
+            localStorage.setItem('cart', JSON.stringify([]));
+            localStorage.setItem('cant', JSON.stringify(0));
+            dataCart = 0;
+        }
+        
+       /* try{
+            const cart = JSON.parse(localStorage.getItem("cart"))
+        }catch(error){
+            console.log("error");
+            
+        }*/
+    }, [])
+   
+    window.addEventListener('storage', () => {
+        if(dataCartI == ""){
     
-  }
-  const [cartItem, setCartItem] = useState(dataCart);
-  const [tokn, setTokn] = useState();
+            console.log("hey chicho libda kids alon")
+            localStorage.setItem('cart', JSON.stringify([]));
+            localStorage.setItem('cant', JSON.stringify(0));
+            dataCart = 0;
+            setCartItemN(0);
+        }
+        if(!Array.isArray(dataCartI)){
+        
+            console.log("hey chicho libda kids alon2")
+            localStorage.setItem('cart', JSON.stringify([]));
+            localStorage.setItem('cant', JSON.stringify(0));
+            dataCart = 0;
+        }
+
+        if(Number.isInteger(dataCart)){
+            localStorage.setItem('cart', JSON.stringify([]));
+            localStorage.setItem('cant', JSON.stringify(0));
+        }
+        
+        
+        // When local storage changes, dump the list to
+        // the console.
+       // console.log(JSON.parse(window.localStorage.getItem('sampleList')));
+      });
+    dataCart = JSON.parse(dataCart);
+    dataCart = parseInt(dataCart);
+    dataCartI = JSON.parse(dataCartI);
+    useEffect(() => {
+        if(dataCartI == ""){
+        
+            console.log("hey chicho libda kids alon")
+            localStorage.setItem('cart', JSON.stringify([]));
+            localStorage.setItem('cant', JSON.stringify(0));
+            dataCart = 0;
+        }
+        if(!Array.isArray(dataCartI)){
+        
+            console.log("hey chicho libda kids alon2")
+            localStorage.setItem('cart', JSON.stringify([]));
+            localStorage.setItem('cant', JSON.stringify(0));
+            dataCart = 0;
+        }
+        window.addEventListener('storage', () => {
+            // When local storage changes, dump the list to
+            // the console.
+           // console.log(JSON.parse(window.localStorage.getItem('sampleList')));
+        });
+    }, [dataCartI])
+
+    if(isNaN(dataCart)){
+        dataCart = 0;
+        
+    }
+    if(dataCartI == null){
+        dataCartI = [];
+        
+    }
+    if(dataCartI == ""){
+        dataCartI = [];
+        
+    }
+  /*  State Variables */
+  const [cartItemN, setCartItemN] = useState(dataCart);
+  const [cartItemD, setCartItemD] = useState(dataCartI);
+  const [tokn, setTokn] = useState(0);
   let tokenString = localStorage.getItem('_');
   const [showLogin, setShowLogin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [subTotal, setSubTotal] = useState(0);
+  const [userInfo, setUserInfo] = useState([]);
   
-  useEffect(() => {
-    if(tokenString){
-        tokenString = JSON.parse(tokenString);
-        tokenString = parseInt(tokenString);
-        setTokn(tokenString);
-        setShowLogin(false);
-    }
-    
-  }, [])
+  //console.log(dataCartI);
   const getToken = (data) => {
   
    // setTokn2("hey")
@@ -46,7 +131,7 @@ export const TaskContextProvider = (props) => {
     
   }
   const getDa =  (datas) =>{
-   // console.log(datas);
+   // //console.log(datas);
    if(datas){
     setTokn(datas);
     setShowLogin(false);
@@ -54,36 +139,116 @@ export const TaskContextProvider = (props) => {
     
   }
   const token = getToken();
-  const addCartItem = (data) =>{
-    //console.log(data + 1);
+  let newArray;
+  const addCartItem = (data, stock) =>{
+    data = parseInt(data);
+    stock = parseInt(stock);
+    const isFound = cartItemD.some(element => {
+        if (parseInt(element.id) === data) {
+          return true;
+        }
     
-    setCartItem(prev => prev + 1);
+        return false;
+    });
+    if (isFound) {
+            
+    }else{
+        setCartItemN(prev => prev + 1);
+        setCartItemD(prev => [...prev, {id:parseInt(data), cant:1, stock:stock}])
+    }
     
+      
+    cartItemD.map(obj => {
+        let ca = obj.cant;
+        ca = parseInt(ca);
+        ////console.log(ca);
+        
+        if (parseInt(obj.id) === parseInt(data)) {
+            console.log(data);
+            console.log(obj.id);
+            console.log(obj.cant);
+            console.log(obj.stock);
+         //   return {...obj, cant: parseInt(ca)};
+        }
+        //return obj;
+    });
+    
+    newArray = [...cartItemD];
+
+    //console.log(newArray);
+    for (let i = 0; i < newArray.length; i++) {
+        const element = newArray[i];
+        if(parseInt(element.id) == parseInt(data)){
+            if(element.cant >= element.stock){
+                //setCartItemD(prev => prev);
+                
+            }else{
+
+                element.cant = element.cant + 1;
+                setCartItemN(prev => prev + 1);
+                setCartItemD(newArray);
+            }
+                
+        }else{
+           // setCartItemN(prev => prev + 1);
+           
+        }
+    }
+    
+    
+  
     // updateSesionData();
     
   }
+  /*const isFound = cartItemD.some(element => {
+    if (element.id === lastId) {
+      return true;
+    }
+
+    return false;
+  });*/
   useEffect(() => {
     updateCart();
-  
+    
+  //  console.log(cartItemD);
+    /*arrayCart.push(cartItemD);
+    if (isFound) {
+        console.log('✅ array contains object with id = 1');
+    }
     return () => {
       
-    }
-  }, [cartItem])
+    }*/
+  }, [cartItemN, cartItemD])
+
   
   const updateCart = () => {
     
-    localStorage.setItem('cant', JSON.stringify(cartItem));
+    localStorage.setItem('cant', JSON.stringify(cartItemN));
+    localStorage.setItem('cart', JSON.stringify(cartItemD));
   }
+  const [showAlertStock, setShowAlertStock] = useState(false);
   return (
     <ShopContext.Provider value={{
         addCartItem,
-        cartItem,
+        cartItemN,
         tokn,
         setShowLogin,
         showLogin,
         getToken,
         loading,
         setLoading,
+        cartItemD,
+        loading,
+        showAlertStock,
+        setShowAlertStock,
+        setCartItemD,
+        setCartItemN,
+        subTotal, 
+        setSubTotal,
+        setTokn,
+        userInfo,
+        setUserInfo,
+        tokenString
     }}>
         {props.children}
     </ShopContext.Provider>
