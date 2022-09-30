@@ -9,7 +9,7 @@ import CartData from './Data/CartData';
 
 
 const Cart = () => { 
-   const { cartItemD, loading, setLoading, showAlertStock, subTotal, tokenString, setUserInfo, userInfo} = useContext(ShopContext);
+   const { cartItemD, loading, setLoading, showAlertStock, subTotal, tokenString, setUserInfo, userInfo, numberWithCommas} = useContext(ShopContext);
   
 
    useEffect(() => {
@@ -85,12 +85,12 @@ const Cart = () => {
                                     <div className='footer-data'>
                                         <span>
                                         
-                                        <b><div>$</div>{parseFloat(subTotal).toFixed(2)}</b>
+                                        <b><div>$</div>{numberWithCommas(parseFloat(subTotal).toFixed(2))}</b>
                                             
                                         </span>
                                         <span>
                                         
-                                        <b><div>$</div>10000.00</b>
+                                        <b><div>$</div>{numberWithCommas(10000.00)}</b>
                                             
                                         </span>
                                         <span>
@@ -100,7 +100,7 @@ const Cart = () => {
                                         </span>
                                         <span>
                                         
-                                        <b><div>$</div>1080.00</b>
+                                        <b><div>$</div>{numberWithCommas(1080.00)}</b>
                                             
                                         </span>
                                     </div>

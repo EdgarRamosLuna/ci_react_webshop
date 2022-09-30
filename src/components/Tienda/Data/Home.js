@@ -6,7 +6,7 @@ import { Products, ProductsTienda, Recomendado } from '../../../styles/Home';
 
 const Home = (props) => {
   const {dataTienda, bg, rec, pb} = props;
-  const {addCartItem, cartItem, loading, setLoading} = useContext(ShopContext);
+  const {addCartItem, cartItem, loading, setLoading, numberWithCommas} = useContext(ShopContext);
   
   //console.log(dataCart);
   
@@ -33,7 +33,7 @@ const Home = (props) => {
                                 $
                             </span>
                             <span className="pric"> 
-                                {data.precio}
+                                {numberWithCommas(data.precio)}
                             </span>
                         </div>
                     

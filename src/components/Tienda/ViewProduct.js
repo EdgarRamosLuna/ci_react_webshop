@@ -6,7 +6,7 @@ import { ShopContext } from '../../context/TaskContext';
 import { LoadingS, LoadingSmall, ProductView, ProductViewImg } from '../../styles/Home';
 
 const ViewProduct = (props) => {
-  const {addCartItem, cartItem, loading, setLoading} = useContext(ShopContext);
+  const {addCartItem, cartItem, loading, setLoading, numberWithCommas} = useContext(ShopContext);
   const idP = useParams();
   console.log(idP);
   const [nombre, setNombre] = useState("");
@@ -106,7 +106,7 @@ const ViewProduct = (props) => {
         </div>
         <div className="producto-body-data-precio">
           <div className="producto-body-data-precio-txt">
-            <h4>$ {precio}</h4>
+            <h4>$ {numberWithCommas(precio)}</h4>
           </div>
         </div>
         <div className="producto-body-data-desc">

@@ -120,7 +120,9 @@ export const TaskContextProvider = (props) => {
   const [loading, setLoading] = useState(true);
   const [subTotal, setSubTotal] = useState(0);
   const [userInfo, setUserInfo] = useState([]);
-  
+  function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   //console.log(dataCartI);
   const getToken = (data) => {
   
@@ -248,7 +250,8 @@ export const TaskContextProvider = (props) => {
         setTokn,
         userInfo,
         setUserInfo,
-        tokenString
+        tokenString,
+        numberWithCommas,
     }}>
         {props.children}
     </ShopContext.Provider>

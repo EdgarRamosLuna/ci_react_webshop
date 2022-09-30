@@ -7,7 +7,7 @@ import { CartFooter, CartItem } from '../../../styles/Home';
 
 
 const CartData = () => {
-  const { cartItemD, setShowAlertStock, setCartItemD, setCartItemN,subTotal,setSubTotal, tokn,} = useContext(ShopContext);
+  const { cartItemD, setShowAlertStock, setCartItemD, setCartItemN,subTotal,setSubTotal, tokn,numberWithCommas} = useContext(ShopContext);
   const initialState = [{
         id: "",
         name: "",
@@ -26,6 +26,7 @@ const CartData = () => {
     for (let i = 0; i < cartItemD.length; i++) {
         const id = cartItemD[i].id;
         const cant = cartItemD[i].cant;
+        // eslint-disable-next-line no-loop-func
         axios.post('https://oasistienda.com/home/getCartItems', JSON.stringify({'idp': id, })).then(res =>{
         //console.log(res.data);
         if (res.data) {
@@ -33,7 +34,10 @@ const CartData = () => {
            subtotal += total;
            total = parseFloat(total);
            total = total.toFixed(2);
-
+           let precio = res.data[0].precio;
+           precio = parseFloat(precio);
+           precio = numberWithCommas(precio);
+           console.log(precio);
            setSubTotal(subtotal);
            setCartItem(prev => [...prev, {id:id, name:res.data[0].nombre_producto, img:res.data[0].file_name, price:res.data[0].precio, stock:res.data[0].inventario, cant:cant, total:total}]);
         }
@@ -139,6 +143,10 @@ useEffect(() => {
     
    }
    //console.log(cartItemD);
+   const returnNumber = (Number) =>{
+        let newNumb = numberWithCommas(Number);
+        return newNumb;
+   }
   return (
     <div className="cart-item">
       {
@@ -156,7 +164,7 @@ useEffect(() => {
                             <div className="price-container">
                                 <span className="symb">$</span>
                                 <span className="pri">
-                                    {data.price}
+                                    {returnNumber(data.price)}
                                 </span>
                                 
                             </div>
@@ -173,7 +181,11 @@ useEffect(() => {
                         </div>
                         <div className="total">
                         Total <br/>
-                        ${parseFloat(parseInt(cant[index].cant) * parseFloat(data.price)).toFixed(2)}
+                        ${
+                        
+                        returnNumber(parseFloat(parseInt(cant[index].cant) * parseFloat(data.price)).toFixed(2))
+                        
+                        }
                         </div>
                         
                     </CartItem>
